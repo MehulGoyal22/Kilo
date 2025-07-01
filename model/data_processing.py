@@ -15,9 +15,19 @@ from .resnet import ResNet
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-def open_json(
-    file_name, dir_path
-):
+bands = ['ztfg', 'ztfr', 'ztfi']
+detection_limit = 22.0
+num_repeats = 50
+num_channels = 3
+num_points = 32 #Changed from 121
+
+t_zero = 44242.00021937881
+t_min = 44240.00
+t_max = 44270.00
+days = int(round(t_max - t_min))
+time_step = 1
+
+def open_json(file_name, dir_path):
     ''' 
     Opens a json file, loads data as a dictionary, and closes the file 
     Inputs:
