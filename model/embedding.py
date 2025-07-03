@@ -143,7 +143,7 @@ class SimilarityEmbedding(nn.Module):
                  num_hidden_layers_f=1, 
                  num_hidden_layers_h=1, 
                  num_blocks=4, 
-                 kernel_size=5, 
+                 kernel_size=5, #Maybe try a larger kernel size
                  num_dim_final=10, 
                  activation=torch.tanh,
                  num_channels=num_channels,
@@ -157,9 +157,9 @@ class SimilarityEmbedding(nn.Module):
         self.contraction_layer = nn.Linear(in_features=100, out_features=num_dim)
         # self.layers_f = ConvResidualNet(in_channels=num_channels, out_channels=1, hidden_channels=20, num_blocks=num_blocks, kernel_size=kernel_size)
         # self.contraction_layer = nn.Linear(in_features=in_features, out_features=num_dim)
-        self.expander_layer = nn.Linear(num_dim, 20)
-        self.layers_h = nn.ModuleList([nn.Linear(20, 20) for _ in range(num_hidden_layers_h)])
-        self.final_layer = nn.Linear(20, num_dim_final)
+        self.expander_layer = nn.Linear(num_dim, 100)
+        self.layers_h = nn.ModuleList([nn.Linear(100, 100) for _ in range(num_hidden_layers_h)])
+        self.final_layer = nn.Linear(100, num_dim_final)
         self.activation = activation
         
     def forward(self, x):
