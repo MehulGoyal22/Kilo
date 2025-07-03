@@ -29,10 +29,10 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 num_dim = 7
 context_features = num_dim
 similarity_embedding = SimilarityEmbedding()
-num_points = 121
+num_points = 33
 
 class Flow_data(Dataset):
-    def __init__(self, data_shifted_flow, param_shifted_flow):
+    def __init__(self, data_shifted_flow, param_shifted_flow,num_lc_flow):
         super().__init__()
         self.data_shifted_flow = data_shifted_flow
         self.param_shifted_flow = param_shifted_flow
